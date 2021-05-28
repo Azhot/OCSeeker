@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">OCSeeker</string>
+    <string name="search_movies_shows">Search movies and TV shows</string>
 </resources>
