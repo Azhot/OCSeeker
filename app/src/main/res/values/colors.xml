@@ -4,7 +4,7 @@
     <color name="primaryVariantColor">#C85009</color>
     <color name="secondaryColor">#3C3C3C</color>
     <color name="secondaryVariantColor">#141414</color>
-    <color name="transparentBackground">#800F0F1E</color>
+    <color name="transparentBackground">#400F0F1E</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 </resources>
