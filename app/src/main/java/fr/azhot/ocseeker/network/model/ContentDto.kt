@@ -6,10 +6,10 @@ import com.google.gson.annotations.SerializedName
 data class ContentDto(
     @SerializedName("title")
     @Expose
-    val title: List<Title>,
+    val title: List<TitleDto>? = null,
     @SerializedName("subtitle")
     @Expose
-    val subtitle: String,
+    val subtitle: String? = null,
     @SerializedName("subtitlefocus")
     @Expose
     val subtitlefocus: List<String>? = null,
@@ -24,20 +24,20 @@ data class ContentDto(
     val lowrightinfo: List<String>? = null,
     @SerializedName("imageurl")
     @Expose
-    val imageurl: String,
+    val imageurl: String? = null,
     @SerializedName("fullscreenimageurl")
     @Expose
-    val fullscreenimageurl: String,
+    val fullscreenimageurl: String? = null,
     @SerializedName("id")
     @Expose
-    val id: String,
+    val id: String? = null,
     @SerializedName("detaillink")
     @Expose
-    val detaillink: String,
+    val detaillink: String? = null,
     @SerializedName("duration")
     @Expose
-    val duration: String,
+    val duration: String? = null,
     @SerializedName("playinfoid")
     @Expose
-    val playinfoid: Playinfoid,
+    val playinfoid: PlayinfoidDto? = null,
 )

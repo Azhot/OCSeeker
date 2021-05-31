@@ -3,7 +3,7 @@ package fr.azhot.ocseeker.network.model
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class Playinfoid(
+data class PlayinfoidDto(
     @SerializedName("hd")
     @Expose
     val hd: String? = null,
