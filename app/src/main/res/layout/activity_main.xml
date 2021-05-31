@@ -4,25 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    tools:context=".MainActivity">
+    android:background="@color/secondaryColor"
+    tools:context=".presentation.ui.main.view.MainActivity">
+
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/searchField"
+        android:id="@+id/searchLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_background_search"
         android:hint="@string/search_movies_shows"
+        android:elevation="16dp"
         app:boxBackgroundColor="@color/white"
+        android:padding="16dp"
         app:boxStrokeColor="#E96C09"
         app:endIconMode="clear_text"
         app:endIconTint="@color/primaryVariantColor"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:startIconDrawable="@drawable/ic_search"
-        android:layout_height="wrap_content"
         app:startIconTint="@color/primaryVariantColor">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/searchField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:imeOptions="actionSearch"
@@ -30,14 +35,28 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchField"
+        app:layout_constraintTop_toBottomOf="@id/searchLayout"
         tools:listitem="@layout/cell_content" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/primaryColor"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
