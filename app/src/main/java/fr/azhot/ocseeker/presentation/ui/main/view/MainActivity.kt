@@ -2,13 +2,14 @@ package fr.azhot.ocseeker.presentation.ui.main.view
 
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.view.View
-import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.snackbar.Snackbar
+import fr.azhot.ocseeker.R
 import fr.azhot.ocseeker.databinding.ActivityMainBinding
 import fr.azhot.ocseeker.network.api.ApiService
 import fr.azhot.ocseeker.network.api.RetrofitBuilder
@@ -36,17 +37,12 @@ class MainActivity : AppCompatActivity() {
         setupViewBinding()
         setupRecyclerView()
         setUpObserver()
-        setUpEditText()
     }
 
-    private fun setUpEditText() {
-        binding.searchField.setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                viewModel.getContents(binding.searchField.text.toString())
-                return@setOnEditorActionListener true
-            }
-            false
-        }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        menu?.let { setupSearchView(menu) }
+        return super.onCreateOptionsMenu(menu)
     }
 
 
@@ -54,6 +50,22 @@ class MainActivity : AppCompatActivity() {
     private fun setupViewBinding() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+    }
+
+    private fun setupSearchView(menu: Menu) {
+        val searchView = menu.findItem(R.id.actionSearch)?.actionView as SearchView
+        searchView.queryHint = getString(R.string.search_hint)
+        searchView.setOnQueryTextListener(
+            object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    query?.let { viewModel.getContents(it) }
+                    return false
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    return false
+                }
+            })
     }
 
     private fun setupRecyclerView() {
