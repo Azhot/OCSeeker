@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
-import androidx.recyclerview.widget.LinearLayoutManager
 import fr.azhot.ocseeker.R
 import fr.azhot.ocseeker.databinding.ActivityMainBinding
 import fr.azhot.ocseeker.network.api.ApiService
@@ -70,7 +69,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         binding.recyclerView.apply {
-            layoutManager = LinearLayoutManager(this@MainActivity)
             contentListAdapter = ContentListAdapter()
             adapter = contentListAdapter
         }

@@ -3,6 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_margin="4dp"
+    android:background="@color/secondaryColor"
+    android:elevation="16dp"
     android:layout_height="wrap_content">
 
     <ImageView
@@ -24,18 +27,19 @@
         android:ellipsize="end"
         android:fontFamily="@font/robotocondensed_bold"
         android:maxLines="1"
-        android:paddingStart="12dp"
-        android:paddingTop="4dp"
+        android:paddingStart="8dp"
+        android:paddingTop="8dp"
         android:paddingEnd="12dp"
         android:paddingBottom="0dp"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="17sp"
         app:layout_constraintBottom_toTopOf="@id/subtitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:text="Very long title" />
 
     <TextView
+        android:layout_marginBottom="4dp"
         android:id="@+id/subtitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -44,11 +48,11 @@
         android:ellipsize="end"
         android:fontFamily="@font/robotocondensed_lightitalic"
         android:maxLines="1"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
         android:paddingBottom="4dp"
         android:textColor="@color/white"
-        android:textSize="18sp"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
