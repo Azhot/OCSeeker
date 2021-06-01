@@ -7,9 +7,23 @@
     android:background="@color/secondaryColor"
     tools:context=".presentation.ui.main.view.MainActivity">
 
+    <ImageView
+        android:id="@+id/emptySearch"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="64dp"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_empty_search"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="#40E96C09" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
+        tools:visibility="gone"
         android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -27,7 +41,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -83,9 +83,11 @@ class MainActivity : AppCompatActivity() {
                     Log.d(MainActivity::class.simpleName, "SUCCESS : ${resource.data} ")
                     binding.progressBar.visibility = View.GONE
                     contentListAdapter.submitList(resource.data ?: emptyList())
+                    binding.emptySearch.visibility = View.GONE
                 }
                 ERROR -> {
                     Log.d(MainActivity::class.simpleName, "SUCCESS : ${resource.data} ")
+                    binding.emptySearch.visibility = View.VISIBLE
                     contentListAdapter.submitList(emptyList())
                     binding.progressBar.visibility = View.GONE
                     Toast.makeText(this, resource.message, Toast.LENGTH_SHORT).show()
