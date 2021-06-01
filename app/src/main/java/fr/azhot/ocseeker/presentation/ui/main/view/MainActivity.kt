@@ -33,7 +33,9 @@ class MainActivity : AppCompatActivity() {
     // overridden functions
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setupViewBinding()
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
         setupRecyclerView()
         setUpObserver()
     }
@@ -46,13 +48,10 @@ class MainActivity : AppCompatActivity() {
 
 
     // functions
-    private fun setupViewBinding() {
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-    }
-
     private fun setupSearchView(menu: Menu) {
-        val searchView = menu.findItem(R.id.actionSearch)?.actionView as SearchView
+        val searchItem = menu.findItem(R.id.actionSearch)
+        val searchView = searchItem?.actionView as SearchView
+        searchItem.expandActionView()
         searchView.queryHint = getString(R.string.search_hint)
         val delay = 1000L
         var timer = Timer()
