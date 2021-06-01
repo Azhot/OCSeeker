@@ -20,10 +20,6 @@ class MainViewModel(private val repository: ContentRepository) : ViewModel() {
     fun getContents(title: String) {
         viewModelScope.launch(Dispatchers.IO) {
             _contents.postValue(Resource.loading(data = null))
-            // todo : this should be deleted.
-            //        Simulates a long running GET request
-            //        to display loading animation
-            delay(1000)
             try {
                 _contents.postValue(Resource.success(repository.getContents(title)))
             } catch (e: Exception) {

@@ -1,7 +1,6 @@
 package fr.azhot.ocseeker.presentation.ui.main.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.widget.Toast
@@ -16,6 +15,7 @@ import fr.azhot.ocseeker.network.util.Status.*
 import fr.azhot.ocseeker.presentation.ui.base.MainViewModelFactory
 import fr.azhot.ocseeker.presentation.ui.main.adapter.ContentListAdapter
 import fr.azhot.ocseeker.presentation.ui.main.viewmodel.MainViewModel
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -54,14 +54,32 @@ class MainActivity : AppCompatActivity() {
     private fun setupSearchView(menu: Menu) {
         val searchView = menu.findItem(R.id.actionSearch)?.actionView as SearchView
         searchView.queryHint = getString(R.string.search_hint)
+        val delay = 1000L
+        var timer = Timer()
         searchView.setOnQueryTextListener(
             object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
-                    query?.let { viewModel.getContents(it) }
                     return false
                 }
 
                 override fun onQueryTextChange(newText: String?): Boolean {
+                    timer.cancel()
+                    if (newText == null || newText.length < 2) {
+                        contentListAdapter.submitList(emptyList())
+                        binding.emptySearch.visibility = View.VISIBLE
+                        binding.progressBar.visibility = View.GONE
+                        return false
+                    }
+                    binding.progressBar.visibility = View.VISIBLE
+                    timer = Timer()
+                    timer.schedule(
+                        object : TimerTask() {
+                            override fun run() {
+                                viewModel.getContents(newText)
+                            }
+                        },
+                        delay
+                    )
                     return false
                 }
             })
@@ -78,20 +96,22 @@ class MainActivity : AppCompatActivity() {
         viewModel.contents.observe(this) { resource ->
             when (resource.status) {
                 SUCCESS -> {
-                    Log.d(MainActivity::class.simpleName, "SUCCESS : ${resource.data} ")
                     binding.progressBar.visibility = View.GONE
-                    contentListAdapter.submitList(resource.data ?: emptyList())
-                    binding.emptySearch.visibility = View.GONE
+                    if (resource.data != null) {
+                        contentListAdapter.submitList(resource.data)
+                        binding.emptySearch.visibility = View.GONE
+                    } else {
+                        contentListAdapter.submitList(emptyList())
+                        binding.emptySearch.visibility = View.VISIBLE
+                    }
                 }
                 ERROR -> {
-                    Log.d(MainActivity::class.simpleName, "SUCCESS : ${resource.data} ")
                     binding.emptySearch.visibility = View.VISIBLE
                     contentListAdapter.submitList(emptyList())
                     binding.progressBar.visibility = View.GONE
                     Toast.makeText(this, resource.message, Toast.LENGTH_SHORT).show()
                 }
                 LOADING -> {
-                    Log.d(MainActivity::class.simpleName, "SUCCESS : ${resource.data} ")
                     binding.progressBar.visibility = View.VISIBLE
                 }
             }
