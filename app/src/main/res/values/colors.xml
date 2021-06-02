@@ -2,8 +2,8 @@
 <resources>
     <color name="primaryColor">#E96C09</color>
     <color name="primaryVariantColor">#C85009</color>
-    <color name="secondaryColor">#3C3C3C</color>
-    <color name="secondaryVariantColor">#141414</color>
+    <color name="secondaryColor">#1E1E1E</color>
+    <color name="secondaryVariantColor">#0F0F0F</color>
     <color name="transparentBackground">#400F0F1E</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>

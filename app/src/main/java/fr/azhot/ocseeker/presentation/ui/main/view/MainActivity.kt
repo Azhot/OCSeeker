@@ -1,5 +1,6 @@
 package fr.azhot.ocseeker.presentation.ui.main.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import fr.azhot.ocseeker.R
 import fr.azhot.ocseeker.databinding.ActivityMainBinding
+import fr.azhot.ocseeker.domain.model.Content
 import fr.azhot.ocseeker.network.api.ApiService
 import fr.azhot.ocseeker.network.api.RetrofitBuilder
 import fr.azhot.ocseeker.network.util.Status.*
@@ -17,7 +19,7 @@ import fr.azhot.ocseeker.presentation.ui.main.adapter.ContentListAdapter
 import fr.azhot.ocseeker.presentation.ui.main.viewmodel.MainViewModel
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ContentListAdapter.Interaction {
 
 
     // variables
@@ -46,12 +48,17 @@ class MainActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
+    override fun onItemSelected(content: Content) {
+        val intent = Intent(this@MainActivity, DetailActivity::class.java)
+        intent.putExtra("content", content)
+        startActivity(intent)
+    }
+
 
     // functions
     private fun setupSearchView(menu: Menu) {
         val searchItem = menu.findItem(R.id.actionSearch)
         val searchView = searchItem?.actionView as SearchView
-        searchItem.expandActionView()
         searchView.queryHint = getString(R.string.search_hint)
         val delay = 1000L
         var timer = Timer()
@@ -86,7 +93,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         binding.recyclerView.apply {
-            contentListAdapter = ContentListAdapter()
+            contentListAdapter = ContentListAdapter(this@MainActivity)
             adapter = contentListAdapter
         }
     }

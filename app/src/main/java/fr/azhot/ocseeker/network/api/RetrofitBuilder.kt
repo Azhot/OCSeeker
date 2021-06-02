@@ -1,11 +1,12 @@
 package fr.azhot.ocseeker.network.api
 
+import fr.azhot.ocseeker.util.OCS_API_URL
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitBuilder {
 
-    private const val BASE_URL = "https://api.ocs.fr/apps/v2/"
+    private const val BASE_URL = "$OCS_API_URL/apps/v2/"
 
     private val retrofitService: Retrofit by lazy {
         Retrofit.Builder()

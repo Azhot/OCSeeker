@@ -11,6 +11,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import fr.azhot.ocseeker.databinding.CellContentBinding
 import fr.azhot.ocseeker.domain.model.Content
+import fr.azhot.ocseeker.util.OCS_STATIC_URL
 
 class ContentListAdapter(private val interaction: Interaction? = null) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -69,7 +70,7 @@ class ContentListAdapter(private val interaction: Interaction? = null) :
             binding.subtitle.text = content.subtitle
 
             Glide.with(itemView)
-                .load("https://statics.ocs.fr${content.imageUrl}")
+                .load(OCS_STATIC_URL + content.imageUrl)
                 .apply(
                     RequestOptions().transform(
                         CenterCrop(),
