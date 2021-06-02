@@ -1,4 +1,4 @@
-package fr.azhot.ocseeker.presentation.ui.main.view
+package fr.azhot.ocseeker.presentation.ui.player.view
 
 import android.os.Bundle
 import android.view.LayoutInflater

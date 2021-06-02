@@ -23,7 +23,7 @@
 
     <fragment
         android:id="@+id/detailFragment"
-        android:name="fr.azhot.ocseeker.presentation.ui.main.view.DetailFragment"
+        android:name="fr.azhot.ocseeker.presentation.ui.detail.view.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail">
 
@@ -43,7 +43,7 @@
 
     <fragment
         android:id="@+id/playerFragment"
-        android:name="fr.azhot.ocseeker.presentation.ui.main.view.PlayerFragment"
+        android:name="fr.azhot.ocseeker.presentation.ui.player.view.PlayerFragment"
         android:label="fragment_player"
         tools:layout="@layout/fragment_player" />
 
