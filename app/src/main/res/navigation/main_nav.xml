@@ -31,6 +31,20 @@
             android:name="content"
             app:argType="fr.azhot.ocseeker.domain.model.Content" />
 
+        <action
+            android:id="@+id/action_detailFragment_to_playerFragment"
+            app:destination="@id/playerFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
+
     </fragment>
+
+    <fragment
+        android:id="@+id/playerFragment"
+        android:name="fr.azhot.ocseeker.presentation.ui.main.view.PlayerFragment"
+        android:label="fragment_player"
+        tools:layout="@layout/fragment_player" />
 
 </navigation>

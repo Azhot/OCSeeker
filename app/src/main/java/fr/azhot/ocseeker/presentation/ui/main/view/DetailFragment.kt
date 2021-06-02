@@ -89,7 +89,7 @@ class DetailFragment : Fragment() {
 
     private fun setupPlayButton() {
         binding.playButton.setOnClickListener {
-            // open player here
+            navController.navigate(DetailFragmentDirections.actionDetailFragmentToPlayerFragment())
         }
     }
 }
